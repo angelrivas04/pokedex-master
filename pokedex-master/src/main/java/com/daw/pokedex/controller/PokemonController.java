@@ -58,7 +58,6 @@ public class PokemonController {
             )
     );
 
-    // 1. Devuelve todos los pokémon
     @GetMapping
     public PokemonListResponse getPokemonList() {
         PokemonListResponse response = new PokemonListResponse();
@@ -67,7 +66,6 @@ public class PokemonController {
         return response;
     }
 
-    // 2. Devuelve sublista con offset y limit
     @GetMapping("/pokedex")
     public PokemonListResponse getPaginatedPokemonList(
             @RequestParam(defaultValue = "0") int offset,
@@ -84,8 +82,6 @@ public class PokemonController {
         response.setItems(subList); // solo los elementos filtrados
         return response;
     }
-
-    // 3. Buscar por ID
     @GetMapping("/{id}")
     public PokemonSummary getPokemonById(@PathVariable int id) {
         return pokemonList.stream()
